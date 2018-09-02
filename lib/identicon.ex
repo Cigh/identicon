@@ -3,6 +3,14 @@ defmodule Identicon do
     input
     |> hash_input
     |> pick_color
+  def filter_odd_squares(%Identicon.Image{grid: grid} = image) do
+    filtered_grid = 
+      Enum.filter grid, fn({value, _index}) ->
+        rem(value, 2) == 0
+      end
+
+    %Identicon.Image{image | grid: filtered_grid}
+  end
 
   def build_grid(%Identicon.Image{hex: hex} = image) do
     grid =
