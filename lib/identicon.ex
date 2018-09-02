@@ -3,6 +3,10 @@ defmodule Identicon do
     input
     |> hash_input
     |> pick_color
+  def mirror_row(row) do
+    [first, second, _p] = row
+
+    row ++ [second, first]    
   end
 
   def pick_color(image) do
