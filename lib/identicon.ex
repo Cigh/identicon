@@ -3,6 +3,12 @@ defmodule Identicon do
     input
     |> hash_input
     |> pick_color
+    |> build_grid
+    |> filter_odd_squares
+    |> build_pixel_map
+    |> draw_image
+    |> save_image(input)
+  end
 
   def save_image(image, filename) do
     File.write("#{filename}.png", image)
